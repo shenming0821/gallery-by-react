@@ -1,0 +1,55 @@
+node_modules 项目编译所需node组件所在的包
+src 项目源代码所在目录
+test 测试代码所在目录
+.editorconfig 用来统一不同的编辑器，IDE的编码风格.配置文件
+.jshintrc 代码风格检测工具,不支持JSX的语法。这时用.eslintrc(包含了.jshintrc所有的编码规则，并且支持JSX)
+.yo-rc.json yomen的配置文件，用来记录当前项目的一些信息
+Gruntfile.js  grunt自动化配置工具的编译配置文件
+karma.conf.js  karma框架的配置文件
+LICENSE 协议文件，生成github项目时生成的MIT License
+package.json node项目的配置文件，声明当前项目的一些信息(都依赖了哪些npm包)
+webpack.config.js  webpack开发环境
+webpack.dist.config.js  webpack生产环境
+
+E:\workspaces
+$ cd gallery-by-react
+
+E:\workspaces\gallery-by-react (master)
+$ yo react-webpack gallery-by-react
+
+node server.js 运行项目
+
+通过module.exports暴露出去
+入口entr：
+出口output：
+
+output:{
+	publicPath: '/assets/', 指定把main.js最终部署到服务器上时它会位于哪个路径下
+	path: 'dist/assets',
+	filename: 'main.js' 编译entry: ''后生成的文件名
+}
+
+cache 使用webpack dev server时开启webpack的增量编译
+debug 开启loaders的debug模式
+devtool 在output时生成sourcemap 方便在浏览器的devtools里调试
+dist里debug和devtool都是false的
+
+stats:{ 在webpack执行输出时相关的选项
+	color： 输出颜色的区别
+	reasons： 打印为什么相关模块被引入
+}
+
+module:{ 定义影响各个module的选项
+	loaders:[{  作用： 在js中直接require css和图片文件..
+		test:
+		exclude:
+		loader:'react-hot!babel-loader' //transpiling compiling
+										//!类似管道油箱链式调用，从右往左依次执行
+	}]
+}
+
+		loader: 'url-loader?limit=8192'  url-loader用来返回一个文件最终应有的URL地址。limit参数，8192（8k）当文件大小小于8k左右时，不返回地址 直接返回值，直接内嵌图片
+
+preLoaders在执行所有loader执行前执行
+
+npm install autoprefixer-loader-save-dev //安装css自动兼容工具
