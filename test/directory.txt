@@ -53,3 +53,4 @@ module:{ 定义影响各个module的选项
 preLoaders在执行所有loader执行前执行
 
 npm install autoprefixer-loader-save-dev //安装css自动兼容工具
+ npm install json-loader --save-dev // --save-dev 添加到package.js的devDependencies中。以便于npm install
