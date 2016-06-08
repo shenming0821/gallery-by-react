@@ -103,10 +103,10 @@ gulp.task('sass', function() {
 // });
 gulp.task("default", function() {
     livereload.listen();
-    gulp.run("css");
+    gulp.run("sass");
 
-    // gulp.watch(['src/**']).on('change', function(file) {
-    //     gulp.run("sass");
-    // });
+    gulp.watch(['scss/**']).on('change', function(file) {
+        gulp.run("sass");
+    });
 
 });

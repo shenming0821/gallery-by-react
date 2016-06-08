@@ -1,15 +1,83 @@
-//---------------- reset start-------------------------
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+//---------------- reset start -------------------------
+abbr,
+address,
+article,
+aside,
+audio,
+b,
+blockquote,
+body,
+canvas,
+caption,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+p,
+pre,
+q,
+samp,
+section,
+small,
+span,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+ul,
+var,
+video {
     margin: 0;
     padding: 0;
     border: 0;
     outline: 0;
     vertical-align: baseline;
     background: transparent;
-
 }
-ul,li{
-    list-style-type:none;
+li,
+ul {
+    list-style-type: none;
 }
 html {
     line-height: 1;
@@ -18,16 +86,32 @@ html {
 :focus {
     outline: 1;
 }
-article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary {
     display: block;
 }
 nav ul {
     list-style: none;
 }
-blockquote, q {
+blockquote,
+q {
     quotes: none;
 }
-blockquote:before, blockquote:after, q:before, q:after {
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
     content: '';
     content: none;
 }
@@ -53,7 +137,8 @@ mark {
 del {
     text-decoration: line-through;
 }
-abbr[title], dfn[title] {
+abbr[title],
+dfn[title] {
     border-bottom: 1px dotted #000;
     cursor: help;
 }
@@ -69,10 +154,155 @@ hr {
     margin: 1em 0;
     padding: 0;
 }
-input, select {
+input,
+select {
     vertical-align: middle;
 }
-//---------------- reset end-------------------------
-html,body{
-    background-color: #fdec06;
+//---------------- reset end -------------------------
+//---------------- commonStyle start -------------------------
+@mixin center-ele($wid) {
+    width: $wid;
+    margin: 0 auto;
 }
+@mixin boxShadow($param...){
+    -webkit-box-shadow: $param;
+  -moz-box-shadow: $param;
+  box-shadow: $param;
+}
+@mixin ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+//---------------- commonStyle end -------------------------
+#container {
+    background: url("../css/images/backline.png") repeat;
+}
+//---------------- heser start -------------------------
+#header {
+    img {
+        width: 100%;
+    }
+}
+//---------------- heser end -------------------------
+//---------------- active-bar start -------------------------
+#active-bar {
+    padding-top: 86px;
+    height: 263px;
+    background: url("../css/images/active.png") no-repeat center 86px;
+}
+//---------------- active-bar end -------------------------
+//---------------- show-box start -------------------------
+#show-box {
+    @include center-ele(1163px);
+    margin-bottom: 40px;
+    .show-title-img {
+        background: url("../css/images/img.png") no-repeat;
+    }
+    .tab3 {
+        background-position: 0 0;
+    }
+    .tab4 {
+        background-position: 0 -45px;
+    }
+    .tab1 {
+        background-position: 0 -90px;
+    }
+    .tab2 {
+        background-position: 0 -135px;
+    }
+    .title {
+        @extend .show-title-img;
+        width: 100%;
+        height: 44px;
+        .btns{
+            float: left;
+            width: 223px;
+            height: 100%;
+            margin-right: 25px;
+            cursor: pointer;
+        }
+    }
+    .main {
+        width: 1124px;
+        height: 647px;
+        padding: 39px 0 0 34px;
+        border: 2px solid #0d0509;
+        border-top: none;
+        background-color: #fdec06;
+        @include boxShadow(1px 2px 2px #0d0509);
+    }
+    .list{
+        height: 540px;
+        dl{
+            position: relative;
+            float: left;
+            margin: 0 26px 27px 0;
+            border: 2px solid #222;
+            @include boxShadow(1px 0px 2px #0d0509);
+            .soldOut{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: url(../css/images/sold.png) no-repeat left top;
+            }
+        }
+        dt{
+            width: 248px;
+            height: 160px;
+            img{
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        dd{
+            height: 78px;
+            background-color: #222;
+            padding-left: 7px;
+            .tit{
+                height: 42px;
+                line-height: 42px;
+                color: #fff;
+                font-weight: bold;
+            }
+            .info{
+                color: #fff;
+                b,.price{
+                    color: #ef4440;
+                    font-weight: bold;
+                }
+                b{
+                    font-size: 18px;
+                    margin-right: 4px;
+                }
+                .price{
+                    font-size: 26px;
+                    margin-right: 8px;
+                }
+                .year,.mile{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .seeMore-btn{
+        width: 312px;
+        height: 72px;
+        margin: 0 auto;
+        cursor: pointer;
+        background: url(../css/images/seemore.png) no-repeat;
+    }
+}
+//---------------- show-box end -------------------------
+
+//---------------- footer start -------------------------
+#footer{
+    @include center-ele(1160px);
+    height: 273px;
+    padding-bottom: 22px;
+    background: url("../css/images/rule.png") no-repeat;
+}
+//---------------- footer end -------------------------
