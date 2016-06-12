@@ -1,3 +1,5 @@
+@charset "UTF-8";
+@import 'images.scss';
 //---------------- reset start -------------------------
 abbr,
 address,
@@ -159,9 +161,9 @@ select {
     vertical-align: middle;
 }
 //---------------- reset end -------------------------
-//---------------- commonStyle start -------------------------
+//---------------- mixins start -------------------------
 @mixin center-ele($wid) {
-    width: $wid;
+    width: $wid + px;
     margin: 0 auto;
 }
 @mixin boxShadow($param...){
@@ -174,7 +176,23 @@ select {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-//---------------- commonStyle end -------------------------
+@mixin marRight($right) {
+    margin-right: $right + px;
+}
+@mixin f_l{
+    float: left;
+}
+@mixin borderRadius($radius){
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -o-border-radius: $radius;
+    -ms-border-radius: $radius;
+}
+.hide{
+    display: none;
+}
+//---------------- mixins end -------------------------
 #container {
     background: url("../css/images/backline.png") repeat;
 }
@@ -194,23 +212,8 @@ select {
 //---------------- active-bar end -------------------------
 //---------------- show-box start -------------------------
 #show-box {
-    @include center-ele(1163px);
+    @include center-ele(1162);
     margin-bottom: 40px;
-    .show-title-img {
-        background: url("../css/images/img.png") no-repeat;
-    }
-    .tab3 {
-        background-position: 0 0;
-    }
-    .tab4 {
-        background-position: 0 -45px;
-    }
-    .tab1 {
-        background-position: 0 -90px;
-    }
-    .tab2 {
-        background-position: 0 -135px;
-    }
     .title {
         @extend .show-title-img;
         width: 100%;
@@ -232,77 +235,224 @@ select {
         background-color: #fdec06;
         @include boxShadow(1px 2px 2px #0d0509);
     }
-    .list{
-        height: 540px;
-        dl{
-            position: relative;
-            float: left;
-            margin: 0 26px 27px 0;
-            border: 2px solid #222;
-            @include boxShadow(1px 0px 2px #0d0509);
-            .soldOut{
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                background: url(../css/images/sold.png) no-repeat left top;
-            }
-        }
-        dt{
-            width: 248px;
-            height: 160px;
-            img{
-                display: block;
-                width: 100%;
-                height: 100%;
-            }
-        }
-        dd{
-            height: 78px;
-            background-color: #222;
-            padding-left: 7px;
-            .tit{
-                height: 42px;
-                line-height: 42px;
-                color: #fff;
-                font-weight: bold;
-            }
-            .info{
-                color: #fff;
-                b,.price{
-                    color: #ef4440;
-                    font-weight: bold;
-                }
-                b{
-                    font-size: 18px;
-                    margin-right: 4px;
-                }
-                .price{
-                    font-size: 26px;
-                    margin-right: 8px;
-                }
-                .year,.mile{
-                    font-size: 14px;
-                }
-            }
-        }
-    }
+
     .seeMore-btn{
         width: 312px;
         height: 72px;
         margin: 0 auto;
         cursor: pointer;
-        background: url(../css/images/seemore.png) no-repeat;
+        background: url('../css/images/seemore.png') no-repeat;
     }
 }
 //---------------- show-box end -------------------------
 
+//---------------- list start -------------------------
+.list-box{
+    height: 540px;
+}
+.list{
+    dl{
+        position: relative;
+        float: left;
+        margin: 0 26px 27px 0;
+        border: 2px solid #222;
+        @include boxShadow(1px 0px 2px #0d0509);
+        .soldOut{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: url(../css/images/sold.png) no-repeat left top;
+        }
+    }
+    dt{
+        width: 248px;
+        height: 160px;
+        img{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    dd{
+        height: 78px;
+        background-color: #222;
+        padding-left: 7px;
+        .tit{
+            height: 42px;
+            line-height: 42px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .info{
+            color: #fff;
+            b,.price{
+                color: #ef4440;
+                font-weight: bold;
+            }
+            b{
+                font-size: 18px;
+                margin-right: 4px;
+            }
+            .price{
+                font-size: 26px;
+                margin-right: 8px;
+            }
+            .year,.mile{
+                font-size: 14px;
+            }
+        }
+    }
+}
+//---------------- list end -------------------------
+
+//---------------- signUp start -------------------------
+#signUp-box{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 97px;
+    background-color: #241a17;
+    .signUp{
+        @include center-ele(1113);
+        padding: 30px 0 0 49px;
+        .tit,#name,#tel,#price,#confirm-btn{
+            @include f_l;
+        }
+        .tit{
+            @include marRight(44);
+        }
+        #name,#tel,#price{
+            display: block;
+            width: 182px;
+            height: 38px;
+            @include marRight(36);
+            padding-left: 15px;
+            line-height: 38px;
+            font-size: 23px;
+            outline: none;
+            border: none;
+            @include borderRadius(5px);
+        }
+        #price{
+            @include marRight(33);
+            height: 40px;
+            line-height: 40px;
+            color: #a9a9a9;
+            background: url('../css/images/arrow.png') no-repeat #ffffff 169px 14px;
+            cursor: pointer;
+        }
+        #confirm-btn{
+            cursor: pointer;
+            img{
+                display: block;
+                height: 40px;
+            }
+        }
+    }
+}
+//---------------- signUp end -------------------------
+
+
 //---------------- footer start -------------------------
 #footer{
-    @include center-ele(1160px);
+    @include center-ele(1160);
     height: 273px;
-    padding-bottom: 22px;
+    padding-bottom: 119px;
     background: url("../css/images/rule.png") no-repeat;
 }
 //---------------- footer end -------------------------
+
+//---------------- modal start -------------------------
+#modal-box{
+    position: absolute;
+    height: 100%;
+    z-index: 999;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    text-align: center;
+    .modal-back{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(43,46,56,.9);
+        z-index: -1;
+    }
+    .modal{
+        display: inline-block;
+        margin-top: 69%;
+        width: 1152px;
+        height: 1068px;
+        background-color: #fdec06;
+        @include boxShadow(8px 5px 14px #0d0509);
+        .title{
+            position: relative;
+            top: -25px;
+            display: inline-block;
+            width: 360px;
+            height: 110px;
+            line-height: 130px;
+            text-indent: 12px;
+            background: url('../css/images/md-tit.png') no-repeat;
+            span{
+                display: inline-block;
+                @extend .md-img;
+            }
+        }
+        .choose-btns{
+            width: 544px;
+            height: 54px;
+            background: #231815;
+            margin: 23px auto 31px auto;
+            span{
+                @include f_l;
+                display: inline-block;
+                width: 136px;
+                height: 100%;
+                font-size: 0;
+                line-height: 54px;
+                cursor: pointer;
+                b{
+                    display: inline-block;
+                    vertical-align: middle;
+                    @extend .md-img;
+                }
+            }
+            .active{
+                background-color: red;
+            }
+        }
+        .modal-list{
+            overflow: auto;
+            margin-right: 34px;
+            height: 811px;
+            margin-left: 146px;
+            
+        }
+        // --------------scrollStyle start-----------------
+
+        //---------------webkit---------------
+        .modal-list::-webkit-scrollbar-thumb {
+            background-color: #070711;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+        }
+        .modal-list::-webkit-scrollbar {
+            width: 18px;
+            height: 8px;
+            background: url('../css/images/scroll-bc.png') no-repeat;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+        }
+        // --------------scrollStyle end-----------------
+    }
+}
+//---------------- modal end -------------------------
