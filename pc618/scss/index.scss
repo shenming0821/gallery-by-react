@@ -433,26 +433,7 @@ select {
             margin-right: 34px;
             height: 811px;
             margin-left: 146px;
-            
         }
-        // --------------scrollStyle start-----------------
-
-        //---------------webkit---------------
-        .modal-list::-webkit-scrollbar-thumb {
-            background-color: #070711;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            border-radius: 10px;
-        }
-        .modal-list::-webkit-scrollbar {
-            width: 18px;
-            height: 8px;
-            background: url('../css/images/scroll-bc.png') no-repeat;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            border-radius: 4px;
-        }
-        // --------------scrollStyle end-----------------
     }
 }
 //---------------- modal end -------------------------
