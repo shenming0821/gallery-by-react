@@ -84,26 +84,27 @@ gulp.task('sass', function() {
 // 		.pipe(livereload());
 // });
 // js 压缩
-// gulp.task("scripts", function() {
-// 	gulp.src(scriptsPath)
-// 		.pipe(plumber())
-// 		.pipe(gwatch(scriptsPath))
-// 		.pipe(babel({
-// 			presets: ['es2015']
-// 		}))
-// 		.pipe(jsx({
-// 			factory: 'React.createClass'
-// 		}))
-// 		// .pipe(uglify())
-// 		.pipe(rename({
-// 			suffix: ".min"
-// 		}))
-// 		.pipe(gulp.dest(scriptsPahtDest))
-// 		.pipe(livereload());
-// });
+gulp.task("scripts", function() {
+    scriptsPath = '/js/*.js'
+	gulp.src(scriptsPath)
+		.pipe(plumber())
+		.pipe(gwatch(scriptsPath))
+		.pipe(babel({
+			presets: ['es2015']
+		}))
+		.pipe(jsx({
+			factory: 'React.createClass'
+		}))
+		// .pipe(uglify())
+		.pipe(rename({
+			suffix: ".min"
+		}))
+		.pipe(gulp.dest(scriptsPahtDest))
+		.pipe(livereload());
+});
 gulp.task("default", function() {
     livereload.listen();
-    gulp.run("sass");
+    gulp.run("sass","scripts");
 
     gulp.watch(['scss/**']).on('change', function(file) {
         gulp.run("sass");
