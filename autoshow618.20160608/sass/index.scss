@@ -218,7 +218,7 @@ select {
 }
 //---------------- mixins end -------------------------
 #container {
-    background: url("../css/images/backline.png") repeat;
+    background: url("http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/css/images/backline.png") repeat;
 }
 //---------------- heser start -------------------------
 #header {
@@ -231,7 +231,7 @@ select {
 #active-bar {
     padding-top: 86px;
     height: 263px;
-    background: url("../css/images/active.png") no-repeat center 86px;
+    background: url("http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/css/images/active.png") no-repeat center 86px;
 }
 //---------------- active-bar end -------------------------
 //---------------- show-box start -------------------------
@@ -251,6 +251,7 @@ select {
         }
     }
     .main {
+        position: relative;
         width: 1124px;
         height: 647px;
         padding: 39px 0 0 34px;
@@ -261,18 +262,22 @@ select {
     }
 
     .seeMore-btn{
+        position: absolute;
+        bottom: 35px;
+        left: 406px;
         width: 312px;
         height: 72px;
         margin: 0 auto;
         cursor: pointer;
-        background: url('../css/images/seemore.png') no-repeat;
+        background: url('http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/css/images/seemore.png') no-repeat;
     }
 }
 //---------------- show-box end -------------------------
 
 //---------------- list start -------------------------
-.list-box{
+#show-box .list{
     height: 540px;
+    @extend .hide;
 }
 .list{
     dl{
@@ -287,7 +292,7 @@ select {
             top: 0;
             width: 100%;
             height: 100%;
-            background: url(../css/images/sold.png) no-repeat left top;
+            background: url(http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/css/images/sold.png) no-repeat left top;
         }
     }
     dt{
@@ -300,17 +305,20 @@ select {
         }
     }
     dd{
+        width: 248px;
         height: 78px;
         background-color: #222;
-        padding-left: 7px;
         .tit{
             height: 42px;
             line-height: 42px;
             color: #fff;
             font-weight: bold;
+            letter-spacing: -1px;
+            text-align: center;
         }
         .info{
             color: #fff;
+            text-align: center;
             b,.price{
                 color: #ef4440;
                 font-weight: bold;
@@ -360,34 +368,50 @@ select {
             border: none;
             @include borderRadius(5px);
         }
+        .price-box{
+            position: relative;
+        }
         #price{
             position: relative;
             @include marRight(33);
             height: 40px;
             line-height: 40px;
             color: #a9a9a9;
-            background: url('../css/images/arrow.png') no-repeat #ffffff 169px 14px;
+            background: url('http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/css/images/arrow.png') no-repeat #ffffff 169px 15px;
             cursor: pointer;
-            .select{
-                position: absolute;
-                left: 0;
-                top: -160px;
-                width: 197px;
-                text-align: center;
-                background: #fff;
-                @include borderRadius(5px);
-                .rds-top{
-                    @include borderRadius-top(5px);
-                }
-                .rds-btm{
-                    @include borderRadius-btm(5px);                    
-                }
-            }
-            .select li:hover{
-                background: #f8ec49;
-                color: #000;
+            &.active{
+                color: #000; 
             }
         }
+        .select{
+            height: 0;
+            overflow: hidden;
+            position: absolute;
+            right: 217px;
+            top: 0;
+            width: 197px;
+            text-align: center;
+            background: #fff;
+            @include borderRadius(5px);
+            .rds-top{
+                @include borderRadius-top(5px);
+            }
+            .rds-btm{
+                @include borderRadius-btm(5px);                    
+            }
+            li{
+                height: 40px;
+                font-size: 22px;
+                color: #a9a9a9;
+                line-height: 40px;
+                cursor: pointer;
+            }
+        }
+        .select li:hover{
+            background: #f8ec49;
+            color: #000;
+        }
+        
         #confirm-btn{
             cursor: pointer;
             img{
@@ -405,12 +429,13 @@ select {
     @include center-ele(1160);
     height: 273px;
     padding-bottom: 119px;
-    background: url("../css/images/rule.png") no-repeat;
+    background: url("http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/css/images/rule.png") no-repeat;
 }
 //---------------- footer end -------------------------
 
 //---------------- modal start -------------------------
 #modal-box{
+    display: none;
     position: absolute;
     height: 100%;
     z-index: 999;
@@ -444,7 +469,7 @@ select {
             height: 110px;
             line-height: 130px;
             text-indent: 12px;
-            background: url('../css/images/md-tit.png') no-repeat;
+            background: url('http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/css/images/md-tit.png') no-repeat;
             span{
                 display: inline-block;
                 @extend .md-img;
@@ -505,7 +530,7 @@ select {
         }
         .scroll_track {
             position: relative;
-            background: url('../css/images/scroll-bc.png');
+            background: url('http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/css/images/scroll-bc.png');
         }
 
         .scroll_drag {
