@@ -213,27 +213,39 @@ select {
     -o-border-bottom-right-radius: $radius;
     -ms-border-bottom-right-radius: $radius;
 }
+@mixin ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+//---------------- mixins end -------------------------
+
+//---------------- common start -------------------------
 .hide{
     display: none;
 }
-//---------------- mixins end -------------------------
+.d-ib{
+    display: inline-block;
+}
 #container {
     background: url("http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/css/images/backline.png") repeat;
 }
-//---------------- heser start -------------------------
+//---------------- common end -------------------------
+
+//---------------- header start -------------------------
 #header {
     img {
         width: 100%;
     }
 }
-//---------------- heser end -------------------------
+//---------------- header end ---------------------------
 //---------------- active-bar start -------------------------
 #active-bar {
     padding-top: 86px;
     height: 263px;
     background: url("http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/css/images/active.png") no-repeat center 86px;
 }
-//---------------- active-bar end -------------------------
+//---------------- active-bar end ----------------------------
 //---------------- show-box start -------------------------
 #show-box {
     @include center-ele(1162);
@@ -272,19 +284,20 @@ select {
         background: url('http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/css/images/seemore.png') no-repeat;
     }
 }
-//---------------- show-box end -------------------------
+//------------------- show-box end -------------------------
 
-//---------------- list start -------------------------
+//------------------- list start -------------------------
 #show-box .list{
     height: 540px;
-    @extend .hide;
 }
 .list{
+    @extend .hide;
     dl{
         position: relative;
         float: left;
         margin: 0 26px 27px 0;
         border: 2px solid #222;
+        background-color: #222;
         @include boxShadow(1px 0px 2px #0d0509);
         .soldOut{
             position: absolute;
@@ -313,10 +326,11 @@ select {
             line-height: 42px;
             color: #fff;
             font-weight: bold;
-            letter-spacing: -1px;
             text-align: center;
+            @include ellipsis;
         }
         .info{
+            white-space: nowrap;
             color: #fff;
             text-align: center;
             b,.price{
@@ -329,7 +343,7 @@ select {
             }
             .price{
                 font-size: 26px;
-                margin-right: 8px;
+                margin-right: 10px;
             }
             .year,.mile{
                 font-size: 14px;
@@ -337,9 +351,9 @@ select {
         }
     }
 }
-//---------------- list end -------------------------
+//------------------- list end -----------------------------
 
-//---------------- signUp start -------------------------
+//------------------- signUp start -------------------------
 #signUp-box{
     position: fixed;
     left: 0;
@@ -350,14 +364,13 @@ select {
     .signUp{
         @include center-ele(1113);
         padding: 30px 0 0 49px;
-        .tit,#name,#tel,#price,#confirm-btn{
-            @include f_l;
-        }
         .tit{
-            @include marRight(44);
+            vertical-align: top;
+            @include marRight(40);
+            @extend .d-ib;
         }
         #name,#tel,#price{
-            display: block;
+            @extend .d-ib;
             width: 182px;
             height: 38px;
             @include marRight(36);
@@ -368,13 +381,20 @@ select {
             border: none;
             @include borderRadius(5px);
         }
+        #signUpForm{
+            @extend .d-ib;
+            vertical-align: top;
+            input{
+                @include f_l;
+            }
+        }
         .price-box{
             position: relative;
+            @extend .d-ib;
         }
         #price{
-            position: relative;
-            @include marRight(33);
             height: 40px;
+            @include marRight(29);
             line-height: 40px;
             color: #a9a9a9;
             background: url('http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/css/images/arrow.png') no-repeat #ffffff 169px 15px;
@@ -384,12 +404,11 @@ select {
             }
         }
         .select{
-            height: 0;
             overflow: hidden;
             position: absolute;
-            right: 217px;
             top: 0;
             width: 197px;
+            height: 0;
             text-align: center;
             background: #fff;
             @include borderRadius(5px);
@@ -415,7 +434,6 @@ select {
         #confirm-btn{
             cursor: pointer;
             img{
-                display: block;
                 height: 40px;
             }
         }
@@ -435,61 +453,76 @@ select {
 
 //---------------- modal start -------------------------
 #modal-box{
-    display: none;
+    @extend .hide;
     position: absolute;
-    height: 100%;
-    z-index: 999;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
     left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
     text-align: center;
+    z-index: 999;
     .modal-back{
         position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
         background: rgba(43,46,56,.9);
         background: rgb(43,46,56)\0;
+        filter:alpha(opacity=90); 
         z-index: -1;
     }
     .modal{
-        display: inline-block;
+        position: relative;
+        @extend .d-ib;
         margin-top: 69%;
+        padding-bottom: 40px;
         width: 1152px;
-        height: 1068px;
+        height: 1028px;
         background-color: #fdec06;
         @include boxShadow(8px 5px 14px #0d0509);
+        .modal-overFlow{
+            overflow: hidden;
+            height: 811px;
+        }
+        .toTop{
+            position: absolute;
+            top: 900px;
+            right: 110px;
+            width: 31px;
+            height: 79px;
+            cursor: pointer;
+            z-index: 999;
+        }
         .title{
             position: relative;
             top: -25px;
-            display: inline-block;
+            @extend .d-ib;
             width: 360px;
             height: 110px;
-            line-height: 130px;
+            line-height: 145px;
             text-indent: 12px;
             background: url('http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/css/images/md-tit.png') no-repeat;
             span{
-                display: inline-block;
+                @extend .d-ib;
                 @extend .md-img;
             }
         }
         .choose-btns{
             width: 544px;
             height: 54px;
-            background: #231815;
             margin: 23px auto 31px auto;
+            background: #231815;
             span{
                 @include f_l;
-                display: inline-block;
+                @extend .d-ib;
                 width: 136px;
                 height: 100%;
                 font-size: 0;
                 line-height: 54px;
                 cursor: pointer;
                 b{
-                    display: inline-block;
+                    @extend .d-ib;
                     vertical-align: middle;
                     @extend .md-img;
                 }
@@ -499,17 +532,16 @@ select {
             }
         }
         .modal-list{
-            overflow: auto;
-            margin-right: 34px;
             height: 811px;
-            margin-left: 146px;
+            margin: 0 34px 0 146px;
+            overflow: hidden;
         }
         //-------------scroll start-------------
-        .list{
+        .list-box{
+            float: left;
             width: 962px;
             height: 811px;
             overflow: auto;
-            float: left;
             padding-bottom: 350px;
         }
         .scroll_container {
@@ -517,7 +549,7 @@ select {
             position: relative;
         }
         .scroll_absolute {
-            position: absolute;            
+            position: absolute;
         }
         .scroll_vertical_bar {
             position: absolute;
@@ -537,16 +569,15 @@ select {
             position: relative;
             top: 0;
             left: 0;
-            cursor: pointer;
             background-color: #131319;
+            cursor: pointer;
             @include borderRadius(8px);
         }
 
         .scroll_arrow {
-            text-indent: -20000px;
             display: block;
+            text-indent: -20000px;
             cursor: pointer;
-            background-color: #369DB4;
         }
 
         .scroll_vertical_bar .scroll_arrow {

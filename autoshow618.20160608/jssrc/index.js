@@ -1,6 +1,6 @@
 require([
-    "http://cdn01.51autoimg.com/51auto/js/lib/jquery.min.js"
-], function () {
+    "http://cdn01.51autoimg.com//51auto/js/lib/jquery.min.js"
+], function (jquery) {
     var page = function () {
         // 初始化
         this.init();
@@ -14,13 +14,81 @@ require([
 
     // 初始化
     page.prototype.init = function () {
+        var _self  = this;
         // 显示第一个列表
         $('.main .list').eq(0).show();
+        $('.modal-list .list').eq(0).show();
+        _self.firstPageUrl = "http://m.51auto.com/ajax/autoShow?num=8";
+        _self.ajaxFun(_self.firstPageUrl, _self.renderin, '#show-box .list');
+    };
+
+    // ajax
+    page.prototype.ajaxFun = function (url, callback, ele) {
+        $.ajax({
+            url: url,
+            type: 'GET',
+            async: true,
+            dataType: 'jsonp',
+            crossDomain: true,
+            jsonp: "callback",
+            timeout: 30000,
+            headers: {
+                "Accept": "application/json; charset=utf-8",
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            error: function (e) {
+                console.log("error");
+            },
+            success: function (result) {
+                callback(ele, result);
+            }
+        });
+    };
+
+    // 渲染列表
+    page.prototype.renderin = function (ele, result) {
+        var strFun = function (obj) {
+            var soldOutStr = "";
+            if (obj.status == 0) {
+                soldOutStr = "<div class=\"soldOut\"></div>";
+            }
+            var htmlStr = "<dl><a href=" + obj.WebURL + "><dt><img src=" + obj.pictureURL + " alt=\"\" /></dt><dd><p class=\"tit\">" + obj.shortDescription + "</p><p class=\"info\"><b>¥</b><span class=\"price\">" + obj.price2W + "万</span><span class=\"year\">" + obj.regdate + "</span><span>|</span><span class=\"mile\">" + obj.distance2W + "万公里</span></p></dd>" + soldOutStr + "</a></dl>";
+            return htmlStr;
+        }
+        var obj = [
+            result.result1,
+            result.result2,
+            result.result3,
+            result.result4,
+        ];
+        var len = $(ele).size();
+        for (i = 0; i < len; i++) {
+            var htmlStr = '';
+            $.each(obj[i], function (n, obj) {
+                htmlStr += strFun(obj);
+            });
+            $(ele).eq(i).html(htmlStr);
+        }
+        if (ele == ".modal-list .list") {
+            page.prototype.easyScroll();
+        };
+    };
+
+    //加载自定义滚动条
+    page.prototype.easyScroll = function () {
+        require([
+            "http://cdn01.51autoimg.com//apps/zhuanti.51auto.com/autoshow618.20160608/js/easyscroll.min.js",
+            "http://cdn01.51autoimg.com//apps/zhuanti.51auto.com/autoshow618.20160608/js/mousewheel.min.js"
+        ], function () {
+            $('.modal .list-box').scroll_absolute({
+                arrows: false
+            });
+        });
     };
 
     // 点击事件
     page.prototype.eleClick = function () {
-
+        var _self = this;
         // 报名专区意向车价
         var signUpClick = (function () {
             var slideFlag;
@@ -32,26 +100,25 @@ require([
                     }, 300);
                     slideFlag = true;
                 } else {
-                    $('.signUp .select').stop(true, true).animate({
-                        height: 0,
-                        top: 0
-                    }, 300);
-                    slideFlag = false;
+                    selectClose();
                 }
             });
             $('body').on('click', function (e) {
-                var ele = e.target;
-                if (!$(ele).hasClass("signUp-price")) {
-                    if (slideFlag) {
-                        slideFlag = false;
-                        $('.signUp .select').stop(true, true).animate({
-                            height: 0,
-                            top: 0
-                        }, 300);
+                if (slideFlag) {
+                    var ele = e.target;
+                    if (!$(ele).hasClass("signUp-price")) {
+                        selectClose();
                     }
                 }
             });
-            $('.signUp .select li').on('click', function () {
+            var selectClose = function () {
+                $('.signUp .select').stop(true, true).animate({
+                    height: 0,
+                    top: 0
+                }, 300);
+                slideFlag = false;
+            }
+            $('.signUp .select').on('click', 'li', function () {
                 $('#price').html($(this).html());
                 $('#price').addClass('active');
             });
@@ -62,7 +129,7 @@ require([
             var $classIndex = 1;
             var $lastClassStr,
                 $thisClassStr;
-            $('.btns').on('click', function () {
+            $('#show-box').on('click', '.btns', function () {
                 // 价格区间切换
                 $lastClassStr = "tab" + $classIndex;
                 $('#show-box .title').removeClass($lastClassStr);
@@ -71,7 +138,7 @@ require([
                 $('#show-box .title').addClass($thisClassStr);
                 // 价格区间对应内容切换
                 var $btnIndex = $(this).index();
-                $('.main .list').eq($btnIndex).show().siblings('.list').hide();
+                $('.main .list').eq($btnIndex).fadeIn(200).siblings('.list').hide();
                 $(this).addClass('active').siblings('.btns').removeClass('active');
             });
         })();
@@ -86,26 +153,36 @@ require([
                 $('.modal .title').find('span').removeClass().addClass($lastClassStr);
                 // 初始化点击默认排序
                 $('.choose-btns span').eq(0).addClass('active').siblings('span').removeClass('active');
-                // 自定义滚动条
-                require([
-                    "http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/js/easyscroll.min.js",
-                    "http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/autoshow618.20160608/js/mousewheel.min.js"
-                ], function () {
-                    $('.modal .list').scroll_absolute({
-                        arrows: false
-                    })
-                })
+                // 初始化滚动条
+                $('.scroll_absolute').css('top', 0);
+                $('.scroll_drag').css('top', 0);
+                // 渲染模态框列表
+                var suffix = $('#show-box .title').find('.active').index() + 1;
+                var url = "http://m.51auto.com/ajax/more?tab=" + suffix;
+                _self.ajaxFun(url, _self.renderin, ".modal-list .list");
             });
         })();
 
-        // 摸态框排序按钮
+        // 模态框排序按钮
         var chooseBtnsClick = (function () {
-            $('.choose-btns span').on('click', function () {
+            $('.choose-btns').on('click', 'span', function () {
                 $(this).addClass('active').siblings('span').removeClass('active');
+                $('.modal-list .list').eq($(this).index()).fadeIn(200).siblings('.list').hide();
+                $('.scroll_absolute').css('top', 0);
+                $('.scroll_drag').css('top', 0);
+                _self.easyScroll();
             });
         })();
 
-        //关闭模态窗
+        // 模态框返回顶部
+        var toTopClick = (function () {
+            $('.modal .toTop').on('click', function () {
+                $('.scroll_absolute').css('top', 0);
+                $('.scroll_drag').css('top', 0)
+            });
+        })();
+
+        // 关闭模态框
         var closeModalClick = (function () {
             $('.modal-back').on('click', function () {
                 $('#modal-box').hide();
@@ -124,9 +201,10 @@ require([
         });
         return json;
     };
+
     // 提交
     page.prototype.present = function () {
-
+        var _self = this;
         //表单提交检查
         var checkForm = function () {
             //是否提交
@@ -179,7 +257,6 @@ require([
                     msg: '请选择您的意向车价！'
                 }
             ];
-
             //提交验证
             formValidationFun(addArray);
             return isSubmit;
@@ -191,41 +268,43 @@ require([
             formSubmit("signUpForm", note, "note");
         });
 
+        // 重置表单
+        var formReset = function () {
+            document.getElementById('signUpForm').reset();
+            $('.signUp-price').html("意向车型").removeClass('active');
+        };
+
+        // 提交表单        
         var formSubmit = function (formId, infoText, nodeId) {
             if (!checkForm()) return false;
             var noteVal = infoText;
             $("#" + nodeId).val(noteVal);
-            var json = this.getFormJson(formId);
-
-            // $.ajax({
-            //     url: 'http://admin2.51auto.com:8080/cms/signupapi/',
-            //     type: 'GET',
-            //     dataType: 'jsonp',
-            //     crossDomain: true,
-            //     jsonp: "callbackparam",
-            //     jsonpCallback: "success",
-            //     timeout: 30000,
-            //     headers: {
-            //         "Accept": "application/json; charset=utf-8",
-            //         "Content-Type": "application/json; charset=utf-8"
-            //     },
-            //     data: json,
-            //     error: function (e) {
-            //         // console.log("error");
-            //     },
-            //     success: function (result) {
-            //         document.getElementById(formId).reset();
-            //         alert("报名成功!");
-            //     }
-            // });
-        }.bind(this);
+            var json = _self.getFormJson(formId);
+            $.ajax({
+                url: 'http://admin2.51auto.com:8080/cms/signupapi/',
+                type: 'GET',
+                dataType: 'jsonp',
+                crossDomain: true,
+                jsonp: "callbackparam",
+                jsonpCallback: "success",
+                headers: {
+                    "Accept": "application/json; charset=utf-8",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                data: json,
+                error: function (e) { },
+                success: function (result) {
+                    alert("报名" + result.msg + "！");
+                    formReset();
+                }
+            });
+        };
     };
 
-    //统计代码
+    // 统计代码
     page.prototype.statisticsFun = function () {
-        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-         获取页面参数，进行参数处理
-         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+        // 获取页面参数，进行参数处理
         var location = window.location.toString();
         var locationSection = location.split("?");
         if (locationSection.length > 1) {
@@ -239,9 +318,8 @@ require([
             $("#resource").val(output);
         }
 
-        /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-         统计监测代码
-         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+        // 统计监测代码
         var _hmt = _hmt || [];
         (function () {
             var hm = document.createElement("script");
