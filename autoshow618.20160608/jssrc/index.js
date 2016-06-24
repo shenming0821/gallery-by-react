@@ -274,7 +274,7 @@ require([
             $('.signUp-price').html("意向车型").removeClass('active');
         };
 
-        // 提交表单        
+        // 提交表单
         var formSubmit = function (formId, infoText, nodeId) {
             if (!checkForm()) return false;
             var noteVal = infoText;
