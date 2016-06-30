@@ -13,8 +13,12 @@ var scriptsPath = "./jssrc/*.js";
 var cssPathDest = "./css";
 var scriptsPahtDest = "./js";
 
+var fs = require("fs");
+var babel = require('babelify');
+var browserify = require("browserify");
+
 // 编译sass
-gulp.task('sass', function() {
+gulp.task('sass', function () {
     return gulp.src(sassPath)
         .pipe(plumber())
         .pipe(gwatch(sassPath))
@@ -26,21 +30,27 @@ gulp.task('sass', function() {
         .pipe(gulp.dest(cssPathDest))
         .pipe(livereload());
 });
-// js 压缩
-gulp.task("scripts", function() {
-    gulp.src(scriptsPath)
-        .pipe(plumber())
-        .pipe(gwatch(scriptsPath))
-        .pipe(uglify())
-        .pipe(rename({
-            suffix: ".min"
-        }))
-        .pipe(gulp.dest(scriptsPahtDest))
-        .pipe(livereload());
+gulp.task('browserify', function () {
+    return browserify("./jssrc/main.js")
+        .transform("babelify", { presets: ["es2015"] })
+        .bundle()
+        .pipe(fs.createWriteStream("bundle.js"));
 });
-gulp.task("default", function() {
+// js 压缩
+// gulp.task("scripts", function () {
+//     gulp.src(scriptsPath)
+//         .pipe(plumber())
+//         .pipe(gwatch(scriptsPath))
+//         .pipe(uglify())
+//         .pipe(rename({
+//             suffix: ".min"
+//         }))
+//         .pipe(gulp.dest(scriptsPahtDest))
+//         .pipe(livereload());
+// });
+gulp.task("default", function () {
     livereload.listen();
-    gulp.run("scripts", "sass");
+    gulp.run( "sass", "browserify");
     gulp.watch(scriptsPath, ["scripts"]);
     gulp.watch(sassPath, ["sass"]);
 });

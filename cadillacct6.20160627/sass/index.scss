@@ -1,0 +1,511 @@
+@charset "UTF-8"; // ------------------------------ reset start ------------------------------
+abbr,
+address,
+article,
+aside,
+audio,
+b,
+blockquote,
+body,
+canvas,
+caption,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+p,
+pre,
+q,
+samp,
+section,
+small,
+span,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+ul,
+var,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+}
+li,
+ul {
+    list-style-type: none;
+}
+html {
+    line-height: 1;
+    font-size: 1em;
+}
+:focus {
+    outline: 1;
+}
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary {
+    display: block;
+}
+nav ul {
+    list-style: none;
+}
+blockquote,
+q {
+    quotes: none;
+}
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+    content: '';
+    content: none;
+}
+a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    background: transparent;
+    text-decoration: none;
+}
+ins {
+    background-color: #ff9;
+    color: #000;
+    text-decoration: none;
+}
+mark {
+    background-color: #ff9;
+    color: #000;
+    font-style: italic;
+    font-weight: bold;
+}
+del {
+    text-decoration: line-through;
+}
+abbr[title],
+dfn[title] {
+    border-bottom: 1px dotted #000;
+    cursor: help;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #cccccc;
+    margin: 1em 0;
+    padding: 0;
+}
+input,
+select {
+    vertical-align: middle;
+}
+img {
+    vertical-align: top;
+}
+// ------------------------------ reset end ------------------------------
+// ------------------------------ mixins start ------------------------------
+@mixin center-ele($wid) {
+    width: $wid + px;
+    margin: 0 auto;
+}
+@mixin boxShadow($param...) {
+    -webkit-box-shadow: $param;
+    -moz-box-shadow: $param;
+    box-shadow: $param;
+}
+@mixin ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+@mixin marRight($right) {
+    margin-right: $right + px;
+}
+@mixin f_l {
+    float: left;
+}
+@mixin borderRadius($radius) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -o-border-radius: $radius;
+    -ms-border-radius: $radius;
+}
+@mixin borderRadius-top($radius) {
+    border-top-left-radius: $radius;
+    -webkit-border-top-left-radius: $radius;
+    -moz-border-top-left-radius: $radius;
+    -o-border-top-left-radius: $radius;
+    -ms-border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+    -webkit-border-top-right-radius: $radius;
+    -moz-border-top-right-radius: $radius;
+    -o-border-top-right-radius: $radius;
+    -ms-border-top-right-radius: $radius;
+}
+@mixin borderRadius-btm($radius) {
+    border-bottom-left-radius: $radius;
+    -webkit-border-bottom-left-radius: $radius;
+    -moz-border-bottom-left-radius: $radius;
+    -o-border-bottom-left-radius: $radius;
+    -ms-border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
+    -webkit-border-bottom-right-radius: $radius;
+    -moz-border-bottom-right-radius: $radius;
+    -o-border-bottom-right-radius: $radius;
+    -ms-border-bottom-right-radius: $radius;
+}
+@mixin ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+@mixin triangle-right {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-left: 8px solid $c222;
+    border-bottom: 5px solid transparent;
+}
+// ------------------------------ mixins end ------------------------------
+// ------------------------------ images start --------------------------------
+.btns-img {
+    background: url("http://cdn01.51autoimg.com/apps/zhuanti.51auto.com/cadillacct6.20160627/css/images/img.png") no-repeat;
+}
+.btn2 {
+    height: 47px;
+    width: 268px;
+    background-position: 0 0;
+}
+.btn1 {
+    height: 44px;
+    width: 370px;
+    background-position: 0 -47px;
+}
+.t2 {
+    height: 57px;
+    width: 478px;
+    background-position: 0 -91px;
+}
+.t2a {
+    height: 57px;
+    width: 478px;
+    background-position: 0 -148px;
+}
+.t1 {
+    height: 57px;
+    width: 478px;
+    background-position: 0 -205px;
+}
+.t1a {
+    height: 57px;
+    width: 478px;
+    background-position: 0 -262px;
+}
+// ------------------------------ images end --------------------------------
+// ------------------------------ common start --------------------------------
+#container {
+    @include center-ele(1180);
+    font-family: "Microsoft YaHei";
+}
+.clearfix {
+    *zoom: 1;
+    &:after {
+        content: " ";
+        display: block;
+        clear: both;
+        height: 0;
+        font-size: 0;
+        visibility: hidden;
+    }
+}
+.hide {
+    display: none;
+}
+$c222: #222222; // ------------------------------ common end --------------------------------
+// ------------------------------ header start --------------------------------
+#header {
+    padding: 0 40px;
+    width: 1100px;
+    height: 81px;
+    line-height: 81px;
+    font-size: 0;
+    .logo {
+        vertical-align: middle;
+    }
+    .header-right {
+        float: right;
+        margin-right: 70px;
+        a {
+            display: block;
+            float: left;
+            margin-left: 33px;
+            font-size: 20px;
+            color: #222222;
+            cursor: pointer;
+            &:hover {
+                color: #8a1528;
+            }
+        }
+    }
+}
+// ------------------------------ header end --------------------------------
+// ------------------------------ mod start --------------------------------
+#mod-top {
+    #banner {
+        text-align: center;
+    }
+    .tabs {
+        @include center-ele(956);
+        @extend .clearfix;
+        div {
+            float: left;
+            width: 478px;
+            height: 47px;
+            cursor: pointer;
+        }
+        .tab-left {
+            @extend .btns-img;
+            @extend .t1;
+            &.active {
+                @extend .t1a;
+            }
+        }
+        .tab-right {
+            @extend .btns-img;
+            @extend .t2;
+            &.active {
+                @extend .t2a;
+            }
+        }
+    }
+    .form-wrapper {
+        height: 424px;
+        @include center-ele(737);
+        padding-top: 63px;
+        & > div {
+            .tit {
+                padding-bottom: 11px;
+                font-size: 22px;
+                color: $c222;
+                letter-spacing: 1px;
+                border-bottom: 1px solid #bcbcbc;
+                p {
+                    margin-bottom: 9px;
+                }
+            }
+            .tit1 {
+                font-size: 15px;
+                @extend .clearfix;
+                & > div {
+                    @extend .clearfix;
+                }
+                span {
+                    vertical-align: middle;
+                }
+                .tit1-left {
+                    float: left;
+                    .triangle {
+                        display: inline-block;
+                        @include triangle-right;
+                        margin-right: 18px;
+                    }
+                }
+                .tit1-right {
+                    float: right;
+                    letter-spacing: 3px;
+                    i {
+                        font-style: normal;
+                        vertical-align: bottom;
+                    }
+                    .true {
+                        margin-right: 30px;
+                    }
+                    input[type='radio'] {
+                        margin-right: 8px;
+                        margin-top: -2px;
+                    }
+                }
+            }
+            .form-content {
+                padding: 34px 8px 0;
+                .row1,
+                .row2 {
+                    height: 30px;
+                }
+                .row1 {
+                    margin-bottom: 19px;
+                    #tel {
+                        width: 249px;
+                    }
+                }
+                .row2 {
+                    select {
+                        display: inline-block;
+                        height: 30px;
+                        border: 1px solid #222;
+                    }
+                }
+                .area {
+                    float: left;
+                    width: 231px;
+                    margin-right: 59px;
+                    #province {
+                        width: 132px;
+                        height: 30px;
+                        margin-right: 4px;
+                    }
+                    #citys {
+                        width: 90px;
+                    }
+                }
+                .dealer {
+                    float: left;
+                    width: 227px;
+                    height: 30px;
+                    text-align: center;
+                    #dealer {
+                        width: 251px;
+                        & > span {
+                            text-indent: 20px;
+                        }
+                    }
+                }
+                span {
+                    display: inline-block;
+                    width: 73px;
+                    line-height: 30px;
+                    vertical-align: middle;
+                    float: left;
+                }
+                input {
+                    float: left;
+                    display: inline-block;
+                    border: 1px solid $c222;
+                    height: 26px;
+                    font-size: 14px;
+                    width: 227px;
+                    text-align: center;
+                    &#name {
+                        margin-right: 75px;
+                    }
+                }
+                .dealer-tit {
+                    width: 84px;
+                    margin-right: 3px;
+                }
+            }
+        }
+        .cell {
+            .sub-btn {
+                cursor: pointer;
+                @extend .btns-img;
+                @extend .btn1;
+                margin: 48px auto 0;
+                &.sub-btn2 {
+                    @extend .btn2;
+                }
+            }
+        }
+    }
+}
+#mod-bottom {
+    @include center-ele(962);
+}
+// ------------------------------ mod end --------------------------------
+// ------------------------------ footer start --------------------------------
+.swiper-container {
+    position: relative;
+    @include center-ele(1180);
+    height: 453px;
+    overflow: hidden;
+    .swiper-wrapper {
+        width: 1180px;
+        .swiper-slide {
+            float: left;
+        }
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+        position: absolute;
+        bottom: 139px;
+        width: 63px;
+        height: 122px;
+        line-height: 122px;
+        text-align: center;
+        font-size: 75px;
+        font-weight: 100;
+        background-color: #fff;
+        color: $c222;
+        cursor: pointer;
+        z-index: 999;
+        -moz-user-select: none,;
+        -webkit-user-select: none;
+    }
+    .swiper-button-prev {
+        left: 0;
+    }
+    .swiper-button-next {
+        right: 0;
+    }
+}
+// ------------------------------ footer end --------------------------------
