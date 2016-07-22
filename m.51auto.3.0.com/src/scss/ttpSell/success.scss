@@ -1,0 +1,37 @@
+@charset "UTF-8";
+@import "../common/common.scss";
+/*------------g-info start------------*/
+.g-info{
+    text-align: center;
+    margin-top: 13%;
+    .tit{
+        font-size: px2rem(30);
+        text-indent: px2rem(16);
+        line-height: px2rem(70);
+        font-weight: bold;
+        color: $mcolor3;
+    }
+    .text{
+        font-size: px2rem(24);
+        color: $mcolor3;
+    }
+}
+
+/*------------g-info end------------*/
+/*------------u-btn start------------*/
+.u-btn{
+    position: absolute;
+    bottom: 11%;
+    left: 50%;
+    width: px2rem(530);
+    height: px2rem(86);
+    margin-left: px2rem(-265);
+    font-size: px2rem(30);
+    font-weight: bold;
+    line-height: px2rem(86);
+    color: $mcolor29;
+    text-align: center;
+    background-color: #ef8201;
+    @include borderRadius(px2rem(10));
+}
+/*------------u-btn end------------*/

@@ -1,0 +1,84 @@
+@charset "UTF-8";
+@import "common/common.scss";
+
+
+#header {
+    width: 100%;
+    height: px2rem(88);
+    background-color: $mcolor5;
+    @extend .rowBox;
+    @include domPadding(0, 20, 0, 20);
+    overflow: hidden;
+    .logo {
+        color: $mcolor30;
+        line-height: 1;
+        font-size: px2rem(91);
+    }
+    .search {
+        @include domMargin(14, 0, 14, 10);
+        @extend .rowBox;
+        display: inline-flex !important;
+        background-color: $mcolor29;
+        border: 1px solid $mcolor1;
+        @extend .cell;
+        @include borderRadius(px2rem(6));
+        .location {
+            display: inline-block;
+            font-size: 0;
+            color: $mcolor3;
+            line-height: px2rem(58);
+            vertical-align: top;
+            letter-spacing: px2rem(-5);
+            .location_lf_box {
+                cursor: pointer;
+                display: inline-block;
+                width: px2rem(120);
+            }
+            .location_txt {
+                letter-spacing: px2rem(2);
+                vertical-align: middle;
+                color: $mcolor3;
+                font-size: px2rem(24);
+            }
+            .iconfont {
+                margin-left: px2rem(10);
+                vertical-align: middle;
+                font-size: px2rem(17);
+            }
+            .vertical_line {
+                display: inline-block !important;
+                vertical-align: middle;
+                @extend .show;
+                width: 1px;
+                height: px2rem(40);
+                background-color: $mcolor1;
+            }
+        }
+        .search_input_box {
+            text-align: left;
+            line-height: 2;
+            @extend .cell;
+            @extend .rowBox;
+            color: $mcolor6;
+            display: inline-flex !important;
+            .iconfont {
+                display: inline-flex;
+                @include domPadding(0, 10, 0, 45);
+                font-size: px2rem(30);
+            }
+            .search_input {
+                margin-top: px2rem(15);
+                display: inline-block;
+                height: px2rem(30);
+                @extend .cell;
+                outline: none;
+                border: none;
+                text-align: left !important;
+                font-size: px2rem(24);
+            }
+            .search_input::-webkit-input-placeholder {
+                color: $mcolor6 !important;
+            }
+        }
+    }
+}

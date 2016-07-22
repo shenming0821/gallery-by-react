@@ -1,0 +1,208 @@
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+旋转
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+@mixin transitions($p:all,$t:.3s) {
+    transition:$p $t;
+    -webkit-transition:$p $t;
+    -moz-transition:$p $t;
+    -o-transition:$p $t;
+}
+@mixin rotate($angle:0deg) {
+    transform: rotate($angle);
+    -ms-transform: rotate($angle); 
+    -moz-transform: rotate($angle);     
+    -webkit-transform: rotate($angle);
+    -o-transform: rotate($angle);  
+}
+@mixin translate3d($x:0,$y:0,$z:0){
+    transform: translate3d($x, $y, $z);
+    -ms-transform: translate3d($x, $y, $z);
+    -moz-transform: translate3d($x, $y, $z);     
+    -webkit-transform: translate3d($x, $y, $z);
+    -o-transform: translate3d($x, $y, $z);
+}
+@mixin domPadding($t,$r,$b,$l){
+    padding: px2rem($t) px2rem($r) px2rem($b) px2rem($l);
+}
+@mixin domMargin($t,$r,$b,$l){
+    margin: px2rem($t) px2rem($r) px2rem($b) px2rem($l);
+}
+@mixin borderRadius($radius){
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -o-border-radius: $radius;
+    -ms-border-radius: $radius;
+}
+@mixin boxSize($value){
+    box-sizing:$value;
+    -webkit-box-sizing:$value;
+    -moz-box-sizing:$value;
+    -o-box-sizing:$value;
+    -ms-box-sizing:$value;
+}
+@mixin textHV(){
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    -webkit-box-pack:center;
+    -moz-box-pack:center;
+    -webkit-box-align:center;
+    -moz-box-align:center; 
+}
+@mixin bkSize($x:auto,$y:auto){
+    background-size: $x $y;
+    -webkit-background-size: $x $y;
+    -moz-background-size: $x $y;
+    -o-background-size: $x $y;
+}
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+单行文本省略
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+@mixin ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+清除浮动
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.clearfix{
+    *zoom: 1;
+
+    &:after {
+        content: " ";
+        display: block;
+        clear: both;
+        height: 0;
+        font-size: 0;
+        visibility: hidden;
+    }
+}
+@mixin domCenter($type){
+    @if $type == x{
+        left: 50%;
+        transform:translate3d(-50%,0,0);
+        -webkit-transform:translate3d(-50%,0,0);
+        -moz-transform:translate3d(-50%,0,0);
+        -o-transform:translate3d(-50%,0,0);
+        -ms-transform:translate3d(-50%,0,0);
+    } @else if $type == y{
+        top: 50%;
+        transform:translate3d(0,-50%,0);
+        -webkit-transform:translate3d(0,-50%,0);
+        -moz-transform:translate3d(0,-50%,0);
+        -o-transform:translate3d(0,-50%,0);
+        -ms-transform:translate3d(0,-50%,0);
+    } @else if $type == all {
+        left: 50%;
+        top: 50%;
+        transform:translate3d(-50%,-50%,0);
+        -webkit-transform:translate3d(-50%,-50%,0);
+        -moz-transform:translate3d(-50%,-50%,0);
+        -o-transform:translate3d(-50%,-50%,0);
+        -ms-transform:translate3d(-50%,-50%,0);
+    }
+}
+@mixin domMove($x:0,$y:0,$z:0){
+        transform:translate3d($x,$y,$z);
+        -webkit-transform:translate3d($x,$y,$z);
+        -moz-transform:translate3d($x,$y,$z);
+        -o-transform:translate3d($x,$y,$z);
+        -ms-transform:translate3d($x,$y,$z);
+}
+@mixin domTransition($props:all,$time:1s){
+        transition: $props $time ease-in;
+        -moz-transition: $props $time ease-in; 
+        -webkit-transition: $props $time ease-in; 
+        -o-transition: $props $time ease-in; 
+}
+@mixin fontStyle($size,$color){
+    font-size: px2rem($size);
+    color: $color;
+}
+.hide{
+    display: none !important;
+}
+.show{
+    display: block;
+}
+.f_l{
+    float: left;
+}
+.f_r{
+    float: right;
+}
+.p-rel{
+    position: relative;
+}
+.p-abs{
+    position: absolute;
+}
+.p-fixd{
+    position: fixed;
+}
+// @font-face {font-family: 'iconfont';
+//     src: url('../font/iconfont.eot'); /* IE9*/
+//     src: url('../font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+//     url('../font/iconfont.woff') format('woff'), /* chrome、firefox */
+//     url('../font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+//     url('../font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+// }
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('http://cdn01.51autoimg.com/apps/m.51auto.3.0.com/src/font/iconfont.eot'); /* IE9*/
+  src: url('http://cdn01.51autoimg.com/apps/m.51auto.3.0.com/src/font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('http://cdn01.51autoimg.com/apps/m.51auto.3.0.com/src/font/iconfont.woff') format('woff'), /* chrome、firefox */
+  url('http://cdn01.51autoimg.com/apps/m.51auto.3.0.com/src/font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('http://cdn01.51autoimg.com/apps/m.51auto.3.0.com/src/font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+
+
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;}
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+css3老版伸缩盒模型
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+@mixin dbox(){
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+}
+@mixin boxo($style:horizontal){
+    -webkit-box-orient: $style;
+    -moz-box-orient: $style;
+    -ms-box-orient: $style;
+    box-orieng:$style;
+}
+@mixin boxa($style:state){
+    -webkit-box-align: $style;
+    -moz-box-align: $style;
+    -ms-box-align: $style;
+    box-align:$style;
+}
+@mixin boxp($style:state){
+    -webkit-box-pack: $style;
+    -moz-box-pack: $style;
+    -ms-box-pack: $style;
+    box-pack:$style;
+}
+@mixin boxf($style:0){
+    -webkit-box-flex:$style;
+    -moz-box-flex:$style;
+    -ms-box-flex:$style;
+    box-flex:$style;
+}
+//设置border和字体颜色
+@mixin borderFontColor($color){
+    color: $color;
+    border: 1px solid $color;
+    @include borderRadius(5px);
+}

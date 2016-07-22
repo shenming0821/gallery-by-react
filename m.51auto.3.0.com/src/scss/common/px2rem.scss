@@ -1,0 +1,6 @@
+@function px2rem($px){
+	@return strip-units($px)*320/$designWidth/20 + rem;
+}
+@function strip-units($number){
+    @return $number / ($number * 0 + 1);
+}   

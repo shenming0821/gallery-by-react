@@ -1,0 +1,80 @@
+@charset "UTF-8";
+@import "common/common.scss";
+
+#footer{
+	position: relative;
+	bottom:px2rem(98);
+	.footer_top{
+		padding-left: px2rem(130);
+		position: relative;
+		height: px2rem(120);
+		border-top: 1px solid $mcolor1;
+		background-color: $mcolor29;
+		.platforms{
+			display: inline-flex;
+			color: $mcolor4;
+			margin-top: px2rem(10);
+			width: px2rem(430);
+			a{
+				color: $mcolor4;
+				text-align: center;
+				width: px2rem(100);
+				display: inline-block;
+			}
+			.pc{
+				@include domMargin(0,40,0,40);
+			}
+			.iconfont{
+				font-size: px2rem(40);
+			}
+			p{
+				line-height: px2rem(40);
+				font-size: px2rem(24);
+			}
+		}
+		.toTop{
+			position: absolute;
+			height: 100%;
+			line-height: px2rem(120);
+			i{
+				color: rgba(0,0,0,.5);
+				font-size: px2rem(65);
+			}
+		}
+	}
+	.tab{
+		border-top: 1px solid $mcolor4;
+		width: 100%;
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		height: px2rem(98);
+		padding-top: px2rem(10);
+		@extend .rowBox;
+		line-height: 1;
+		background-color: $mcolor5;
+		a{
+			@extend .cell;
+			color: $mcolor3;
+			i{
+				font-size: px2rem(50);
+			}
+			p{
+				font-size: px2rem(20);
+				line-height: px2rem(32);
+			}
+		}
+		.current{
+			display: none;
+		}
+		.active{
+			color: $mcolor28;
+			.current{
+				display: block;
+			}
+			.non-current{
+				display: none;
+			}
+		}
+	}
+}

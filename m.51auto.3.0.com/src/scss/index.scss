@@ -1,0 +1,470 @@
+@charset "UTF-8";
+@import "common/common.scss";
+@import "header.scss";
+@import "footer.scss";
+
+body{
+	width: 100%;
+}
+
+
+.content{
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	/*导航*/
+	.navigation{
+		padding-bottom: px2rem(20);
+		width: 100%;
+		background-color: $mcolor29;
+		border-top:1px solid $mcolor1;
+		border-bottom:1px solid $mcolor1;
+		a{
+			@include fontStyle(22,$mcolor3);
+			span{
+				display: block;
+			}
+		}
+		a:nth-child(1) span:nth-child(1){
+			font-size: px2rem(80);
+			color: $mcolor7;
+		}
+		a:nth-child(2) span:nth-child(1){
+			font-size: px2rem(80);
+			color: $mcolor8;
+		}
+		a:nth-child(3) span:nth-child(1){
+			font-size: px2rem(80);
+			color: $mcolor9;
+		}
+		a:nth-child(4) span:nth-child(1){
+			font-size: px2rem(80);
+			color: $mcolor10;
+		}
+	}
+	/*快速找车*/
+	.seek_car{
+		margin-top: px2rem(20);
+		width: 100%;
+		border-bottom:1px solid $mcolor1;
+		background-color: $mcolor29;
+		.sc_title{
+			@include fontStyle(28,$mcolor2);
+			@include domPadding(0,20,0,20);
+			width: 100%;
+			height: px2rem(70);
+			border-top:1px solid $mcolor1;
+			border-bottom:1px solid $mcolor1;
+			div:nth-child(1){
+				line-height: px2rem(70);
+				text-align: left;
+				font-size: px2rem(28);
+			}
+			div:nth-child(2){
+				line-height: px2rem(70);
+				text-align: right;
+				>a{
+					display: block;
+					>span{
+						@include fontStyle(22,$mcolor4);
+						display: inline-block;
+						vertical-align: middle;
+					}
+				}
+			}
+		}
+		/*品牌*/
+		.brands{
+			//@include domMargin(0,20,0,20);
+		}
+		.boundary{
+			@include domMargin(0,40,0,40);
+			border-bottom:1px solid $mcolor1;
+		}
+		/*价格*/
+		.moneys{
+			//@include domPadding(0,20,0,20);
+		}
+		/*品牌和价格公共样式*/
+		>ul{
+			a{
+				@include fontStyle(28,$mcolor3);
+				height: px2rem(90);
+				line-height: px2rem(90);
+			}
+		}
+	}
+	/*车型列表*/
+	.car_type{
+		margin-top: px2rem(20);
+		border-top:1px solid $mcolor1;
+		background-color: $mcolor29;
+		li{
+			a{
+				height: px2rem(230);
+				border-bottom: 1px solid $mcolor1;
+				h1{
+					padding-left: px2rem(10);
+					margin-top: px2rem(10);
+					height: px2rem(46);
+					text-align: left;
+				}
+				h1.c1{
+					@include fontStyle(30,$mcolor11);
+				}
+				h1.c2{
+					@include fontStyle(30,$mcolor12);
+				}
+				h1.c3{
+					@include fontStyle(30,$mcolor13);
+				}
+				h1.c4{
+					@include fontStyle(30,$mcolor14);
+				}
+				h1.c5{
+					@include fontStyle(30,$mcolor15);
+				}
+				h1.c6{
+					@include fontStyle(30,$mcolor16);
+				}
+				p{
+					@include fontStyle(22,$mcolor4);
+					padding-left: px2rem(10);
+					height: px2rem(34);
+					text-align: left;
+				}
+				img{
+					width: px2rem(200);
+					height: px2rem(140);
+				}
+			}
+			a:nth-child(1){
+				h1,p,img{
+					margin-left: px2rem(20);
+				}
+			}
+			a:nth-child(3){
+				h1,p,img{
+					padding-right: px2rem(20);
+				}
+			}
+			a:nth-child(2){
+				border-left: 1px solid $mcolor1;
+				border-right: 1px solid $mcolor1;
+			}
+		}
+	}
+	/* 汽车楼层模块 */
+	.car_storey_box{
+		width: 100%;
+		.advertising{
+			margin-top: px2rem(20);
+			width: 100%;
+			height: px2rem(100);
+			background: #888;
+			>a{
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+		}
+		.car_storey{
+			width: 100%;
+			border-top: 1px solid $mcolor1;
+			border-bottom: 1px solid $mcolor1;
+			margin-top: px2rem(20);
+			background-color: $mcolor29;
+			>h1.cs_title{
+				height: px2rem(70);
+				line-height: px2rem(70);
+				font-size: px2rem(28);
+				padding-left: px2rem(20);
+				&.car1{
+					color: $mcolor11;
+				}
+				&.car2{
+					color: $mcolor18;
+				}
+				&.car3{
+					color: $mcolor19;
+				}
+				&.car4{
+					color: $mcolor14;
+				}
+				&.car5{
+					color: $mcolor15;
+				}
+				&.car6{
+					color: $mcolor16;
+				}
+			}
+			.cs_img{
+				height: px2rem(228);
+				min-height: 114px;
+				overflow: hidden;
+				>img{
+					width: 100%;
+				}
+			}
+			.cslist_box{
+				.car_list4,.car_list3{
+					>li{
+						height: px2rem(60);
+						line-height: px2rem(60);
+						>a{
+							width: 100%;
+							height: 100%;
+							display: block;
+							font-size: px2rem(24);
+						}
+					}
+				}
+				.car_list4{
+					@include domPadding(20,16,20,16);
+					>li{
+						@include domMargin(0,6,0,6);
+					}
+				}
+				.car_list3{
+					@include domPadding(0,14,0,14);
+					>li{
+						@include domMargin(0,8,0,8);
+					}
+				}
+				.more{
+					@include domMargin(20,0,10,0);
+					>a{
+						width: px2rem(106);
+						height: px2rem(38);
+						line-height: px2rem(38);
+						display: block;
+						margin: 0 auto;
+						text-align: center;
+						font-size: px2rem(24);
+						font-weight: bold;
+					}
+				}
+				&.car1{
+					.car_list4,.car_list3{
+						>li{
+							>a{
+								@include borderFontColor($mcolor17);
+							}
+						}
+					}
+					.more{
+						>a{
+							color: $mcolor17;
+						}
+					}
+				}
+				&.car2{
+					.car_list4,.car_list3{
+						>li{
+							>a{
+								@include borderFontColor($mcolor18);
+							}
+						}
+					}
+					.more{
+						>a{
+							color: $mcolor18;
+						}
+					}
+				}
+				&.car3{
+					.car_list4,.car_list3{
+						>li{
+							>a{
+								@include borderFontColor($mcolor19);
+							}
+						}
+					}
+					.more{
+						>a{
+							color: $mcolor19;
+						}
+					}
+				}
+				&.car4{
+					.car_list4,.car_list3{
+						>li{
+							>a{
+								@include borderFontColor($mcolor14);
+							}
+						}
+					}
+					.more{
+						>a{
+							color: $mcolor14;
+						}
+					}
+				}
+				&.car5{
+					.car_list4,.car_list3{
+						>li{
+							>a{
+								@include borderFontColor($mcolor15);
+							}
+						}
+					}
+					.more{
+						>a{
+							color: $mcolor15;
+						}
+					}
+				}
+				&.car6{
+					.car_list4,.car_list3{
+						>li{
+							>a{
+								@include borderFontColor($mcolor16);
+							}
+						}
+					}
+					.more{
+						>a{
+							color: $mcolor16;
+						}
+					}
+				}
+			}
+		}
+
+		.firm_approve,.new_coupon{
+			margin-top: px2rem(20);
+			border-top: 1px solid $mcolor1;
+			border-bottom: 1px solid $mcolor1;
+			background-color: $mcolor29;
+			>h1.title{
+				color: $mcolor23;
+				height: px2rem(70);
+				line-height: px2rem(70);
+				font-size: px2rem(28);
+				padding-left: px2rem(20);
+				border-bottom: 1px solid $mcolor1;
+				margin-bottom: px2rem(20);
+				&.red_c{
+					color: $mcolor25;
+				}
+			}
+			>.car_type3,.car_type4{
+				@include domMargin(0,0,20,0);
+				>li{
+					height: px2rem(60);
+					line-height: px2rem(60);
+					>a{
+						width: 100%;
+						height: 100%;
+						display: block;
+						border: 1px solid $mcolor4;
+						color: $mcolor3;
+						font-size: px2rem(24);
+						@include borderRadius(5px);
+					}
+					&.active_blue{
+						>a{
+							border: 1px solid $mcolor24;
+							color: $mcolor23;
+						}
+					}
+					&.active_red{
+						>a{
+							border: 1px solid $mcolor26;
+							color: $mcolor25;
+						}
+					}
+				}
+			}
+			>.car_type3{
+				@include domPadding(0,16,0,16);
+				>li{
+					@include domMargin(0,6,0,6);
+				}
+			}
+			>.car_type4{
+				@include domPadding(0,14,0,14);
+				>li{
+					@include domMargin(0,8,0,8);
+				}
+			}
+			>.fn_img{
+				position: relative;
+				width: 100%;
+				height: px2rem(420);
+				>img{
+					width: 100%;
+				}
+				>a.fa{
+					width: px2rem(150);
+					height: px2rem(50);
+					line-height: px2rem(50);
+					color: $colorBg;
+					display: block;
+					position: absolute;
+					right: px2rem(16);
+					bottom: px2rem(11);
+					text-align: center;
+					font-size: px2rem(24);
+					@include borderRadius(5px);
+					background-color: rgba(65, 132, 214, 0.85);
+				}
+				>a.nc{
+					width: 100%;
+					height: 100%;
+					display: block;
+					>img{
+						width: 100%;
+					}
+				}
+				>.iconfont_box{
+					width: px2rem(50);
+					height: px2rem(50);
+					position: absolute;
+					right: px2rem(20);
+					bottom: px2rem(30);
+					background-color: rgba(0, 0, 0, 0.5);
+					@include rotate(45deg);
+					@include borderRadius(4px);
+					>.fanyedi{
+						width: 100%;
+						height: 100%;
+						display: block;
+						position: relative;
+						@include rotate(-45deg);
+						>span{
+							width: 100%;
+							line-height: px2rem(50);
+							color: $colorBg;
+							font-size: px2rem(16);
+							padding-left: px2rem(11);
+						}
+					}
+				}
+			}
+			.nc_info{
+				@include domMargin(10,0,10,0);
+				>p{
+					padding-left: px2rem(20);
+				}
+				>.nc_info_p1{
+					height: px2rem(40);
+					line-height: px2rem(40);
+					color: $mcolor3;
+					font-size: px2rem(24);
+				}
+				>.nc_info_p2{
+					height: px2rem(30);
+					line-height: px2rem(30);
+					color: $mcolor4;
+					font-size: px2rem(20);
+				}
+			}
+		}
+		.new_coupon{
+			margin-bottom: px2rem(20);
+		}
+	}
+}
+
+
